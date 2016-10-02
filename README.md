@@ -145,17 +145,15 @@ the container will start up, run a single garbage collection, and shut down.
 The image is published as `spotify/docker-gc`.
 
 #### Building the Docker Image
-The image is currently built with Docker 1.6.2, but to build it against a newer
-Docker version (to ensure that the API version of the command-line interface
-matches with your Docker daemon), simply edit [the `ENV DOCKER_VERSION` line in
-`Dockerfile`][dockerfile-ENV] prior to the build step below.
+The image is built using the docker version of the local docker command 
+(to ensure that the API version of the command-line interface matches with your Docker daemon)
+This can be changed by setting the environement variable DOCKER_VERSION for make or by 
+using --build-arg=DOCKER_VERION=1.x.x  
 
-[dockerfile-ENV]: https://github.com/spotify/docker-gc/blob/fd6640fa8c133de53a0395a36e8dcbaf29842684/Dockerfile#L3
-
-Build the Docker image with `make -f Makefile.docker image` or:
+Build the Docker image with `cd docker ; make image` or:
 
 ```sh
-docker build -t spotify/docker-gc .
+docker build -t spotify/docker-gc --build-arg=DOCKER_VERSION=your-docker-version docker 
 ```
 
 #### Running as a Docker Container
